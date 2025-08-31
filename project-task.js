@@ -45,18 +45,42 @@ Step 4: Test Your Solution
 function processFile(fileName, fileData) {
   try {
     // TODO: Add input validation here
-    
+    // Validate fileName
+    if (!fileName){
+      throw new ReferenceError("File name is missing");
+    }
+    // Validate fileData
+    if (typeof fileData !== "string"){
+      throw new TypeError("File data must be a string");
+    }
+    // Validate empty string data
+    if (!fileData){
+      throw new Error("File data cannot be empty");
+    }
+
     // TODO: Implement simulated file processing here
     console.log(`Processing file: ${fileName}`);
     console.log(`File content: ${fileData}`);
     
     // TODO: Add simulated file operations (reading/writing)
+    console.log('Reading file....');
+    setTimeout(function () {
+      // Code to be executed after the delay
+      console.log(`Parsing and overwriting files for: ${fileName}`);
+      console.log(`${fileName} processed successfully.`);
+    }, 2000); // 2000 milliseconds = 2 seconds
     
   } catch (err) {
     // TODO: Implement error handling
-    console.error(err);
+    console.error("Error caught:", err.message);
+  } finally{
+    // TODO: Implement a finally block to close resources
+    console.log("Finally block entered: starting cleanup");
+    setTimeout(function (){
+      // Code to be executed after delay
+      console.log(`File cleanup completed for: ${fileName || "UNKNOWN FILE"}`);
+    }, 2000); // 2000 milliseconds = 2 seconds
   }
-  // TODO: Implement a finally block to close resources
 }
 
 // ============================================
